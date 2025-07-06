@@ -20,10 +20,85 @@ Add allergies and diet preferences, to get even more tailored results. It starts
 
 ![](https://i.imgur.com/GaMHvRr.jpg)
 
-# Workflow
+# Architecture & Workflow
 
-![](https://i.imgur.com/LFhnmsR.png)
+## System Architecture
 
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                         User Interface (Web)                         │
+│                    ┌─────────────────────────┐                      │
+│                    │   Upload Image Form     │                      │
+│                    │   Recipe Display Page   │                      │
+│                    └───────────┬─────────────┘                      │
+└────────────────────────────────┼────────────────────────────────────┘
+                                 │
+                                 ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                        Flask Application                             │
+│  ┌─────────────────┐    ┌──────────────┐    ┌─────────────────┐   │
+│  │   Routes/Views  │───▶│  Controllers │───▶│    Templates    │   │
+│  │   (/send, /)    │    │              │    │  (HTML/Jinja2)  │   │
+│  └─────────────────┘    └──────────────┘    └─────────────────┘   │
+└────────────────────────────────┼────────────────────────────────────┘
+                                 │
+                                 ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                     AI/ML Processing Pipeline                        │
+│                                                                      │
+│  ┌─────────────────┐    ┌──────────────┐    ┌─────────────────┐   │
+│  │  Image Upload   │───▶│ YOLO v3      │───▶│   Ingredient    │   │
+│  │  & Validation   │    │ Object       │    │   Extraction    │   │
+│  │                 │    │ Detection    │    │                 │   │
+│  └─────────────────┘    └──────────────┘    └────────┬────────┘   │
+│                                                       │             │
+│                                                       ▼             │
+│  ┌─────────────────┐    ┌──────────────┐    ┌─────────────────┐   │
+│  │  Recipe Match   │◀───│   Doc2Vec    │◀───│  Ingredient     │   │
+│  │   Results       │    │  Similarity  │    │  Processing     │   │
+│  │                 │    │  Matching    │    │                 │   │
+│  └─────────────────┘    └──────────────┘    └─────────────────┘   │
+└─────────────────────────────────────────────────────────────────────┘
+                                 │
+                                 ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                         Data Storage                                 │
+│  ┌─────────────────┐    ┌──────────────┐    ┌─────────────────┐   │
+│  │   Recipe JSON   │    │  YOLO Model  │    │  Doc2Vec Model  │   │
+│  │     Files       │    │   Weights    │    │    (d2v_v4)     │   │
+│  └─────────────────┘    └──────────────┘    └─────────────────┘   │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+## Detailed Workflow
+
+### 1. Image Upload Phase
+- User uploads food ingredient photo through web interface
+- Flask validates file type (png, jpg, jpeg, gif)
+- Image saved to `static/images/upload/`
+
+### 2. Object Detection Phase
+- YOLO v3 model loads with custom food-trained weights
+- Processes uploaded image to detect food items
+- Draws bounding boxes around detected ingredients
+- Saves annotated image as `predict.jpg`
+
+### 3. Ingredient Processing Phase
+- Extracts detected ingredient labels from YOLO output
+- Maps detected objects to standardized ingredient names
+- Creates ingredient list for recipe matching
+
+### 4. Recipe Matching Phase
+- Doc2Vec model computes ingredient embeddings
+- Calculates similarity scores against recipe database
+- Returns top N most similar recipes
+
+### 5. Results Display Phase
+- Renders recipe recommendations with:
+  - Recipe names and images
+  - Cooking instructions
+  - Instructional videos (via video API)
+  - Ingredient lists
 
 **Use 'KITCHEN KING' BE HEALTHIER, SAVE MONEY, SAVE EARTH, SPEND LESS TIME, SPEND LESS EFFORT and have happy life.** 
 
