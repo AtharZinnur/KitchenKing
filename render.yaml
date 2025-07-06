@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: kitchenking
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: gunicorn app.app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: FLASK_APP
+        value: app.app
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: YOUTUBE_API_KEY
+        value: AIzaSyAASxTSqfFFIHF0hzyGMEDWsVSskLyyMgo
+    autoDeploy: true
+    healthCheckPath: /
+
+databases:
+  - name: kitchenking-db
+    databaseName: kitchenking
+    user: kitchenking
+    plan: free
