@@ -16,3 +16,6 @@ Pillow==11.1.0
 WTForms==3.2.1
 gensim==4.3.2
 python-dotenv==1.0.1
+torch==2.1.2
+torchvision==0.16.2
+transformers==4.36.2
