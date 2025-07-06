@@ -3,7 +3,7 @@ services:
     name: kitchenking
     runtime: python
     buildCommand: "./build.sh"
-    startCommand: gunicorn app.app:app --bind 0.0.0.0:$PORT
+    startCommand: gunicorn app.app:app --bind 0.0.0.0:$PORT --timeout 120 --workers 1 --threads 2
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0

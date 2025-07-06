@@ -15,6 +15,9 @@ touch app/static/yolo/yolov3.cfg
 touch app/static/yolo/yolo.names
 touch app/static/data/d2v_v4.model
 
+echo "Preloading dependencies to avoid timeouts..."
+python startup.py || true
+
 echo "Build complete!"
 echo "NOTE: You need to manually upload the following files after deployment:"
 echo "  - app/static/yolo/yolov3.cfg"
