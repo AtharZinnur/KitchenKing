@@ -32,6 +32,11 @@ class AdvancedFoodDetector:
     def _initialize_models(self):
         """Initialize various models for food detection"""
         
+        # Skip model initialization in production to avoid timeouts
+        if os.environ.get('FLASK_ENV') == 'production':
+            logger.warning("Skipping advanced model initialization in production")
+            return
+            
         # Model 1: Food-101 classifier (nateraw/food)
         try:
             self.models['food_classifier'] = pipeline(

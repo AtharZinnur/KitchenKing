@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from flask import Flask, render_template, flash, jsonify, redirect, request, url_for, session
+from flask import Flask, render_template, flash, jsonify, redirect, request, url_for, session, send_from_directory
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from flask_bcrypt import Bcrypt
 from datetime import datetime
@@ -166,6 +166,11 @@ def get_current_index():
     return current_index
 
 current_index = get_current_index()
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/x-icon')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
