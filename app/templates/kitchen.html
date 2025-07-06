@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Results - Pic2Kitchen</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/Icon_transparent.png') }}" type="image/png">
+    <style>
+        .uploaded-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .recipe-card {
+            transition: transform 0.3s;
+            height: 100%;
+        }
+        .recipe-card:hover {
+            transform: translateY(-5px);
+        }
+        .recipe-image {
+            height: 200px;
+            object-fit: cover;
+        }
+        .ingredient-badge {
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='images/Icon_transparent.png') }}" height="40" alt="Pic2Kitchen">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('recipe') }}">Recipes</a>
+                </li>
+                {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('preferences') }}">Preferences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('inventory') }}">Inventory</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h2>Your Uploaded Images</h2>
+                {% if uploaded_files and uploaded_files|length > 1 %}
+                    <div id="imageCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for file in uploaded_files %}
+                            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                <img src="{{ url_for('static', filename='images/upload/' + file) }}" alt="Uploaded image {{ loop.index }}" class="d-block w-100 uploaded-image">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#imageCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <p class="text-muted mt-2">Showing {{ uploaded_files|length }} uploaded images</p>
+                {% else %}
+                    <img src="{{ url_for('static', filename='images/upload/' + img_name) }}" alt="Uploaded image" class="uploaded-image">
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <h2>Detected Ingredients</h2>
+                <div class="mt-3">
+                    {% if detected_ingredients %}
+                        {% for ingredient in detected_ingredients %}
+                            <span class="badge badge-primary ingredient-badge">{{ ingredient }}</span>
+                        {% endfor %}
+                        <p class="text-muted mt-2">Total: {{ detected_ingredients|length }} ingredients detected</p>
+                    {% else %}
+                        <p>No ingredients detected</p>
+                    {% endif %}
+                </div>
+                
+                <h3 class="mt-4">Analyzed Image</h3>
+                <img src="{{ url_for('static', filename='images/predict.jpg') }}?t={{ range(1, 10000) | random }}" alt="Analyzed image" class="uploaded-image">
+            </div>
+        </div>
+
+        <hr>
+
+        <h2 class="mb-4">Recommended Recipes</h2>
+        
+        {% if recipes %}
+            <div class="row">
+                {% for recipe in recipes %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card recipe-card">
+                            {% if recipe.get('video_thumbnail') %}
+                                <img src="{{ recipe.video_thumbnail }}" class="card-img-top recipe-image" alt="{{ recipe.name }}">
+                            {% else %}
+                                <img src="{{ url_for('static', filename='images/recipe_placeholder.jpg') }}" class="card-img-top recipe-image" alt="{{ recipe.name }}">
+                            {% endif %}
+                            
+                            <div class="card-body">
+                                <h5 class="card-title">{{ recipe.name }}</h5>
+                                <p class="card-text">{{ recipe.description[:100] }}...</p>
+                                
+                                {% if recipe.time %}
+                                    <p class="text-muted"><i class="far fa-clock"></i> {{ recipe.time }}</p>
+                                {% endif %}
+                                
+                                <div class="mb-2">
+                                    {% for ingredient in recipe.ingredients[:3] %}
+                                        <span class="badge badge-secondary">{{ ingredient }}</span>
+                                    {% endfor %}
+                                    {% if recipe.ingredients|length > 3 %}
+                                        <span class="badge badge-secondary">+{{ recipe.ingredients|length - 3 }} more</span>
+                                    {% endif %}
+                                </div>
+                                
+                                <a href="{{ url_for('recipe_detail', recipe_id=recipe.recipe_id) }}" class="btn btn-primary btn-block">View Recipe</a>
+                                
+                                {% if recipe.video_url %}
+                                    <a href="{{ recipe.video_url }}" target="_blank" class="btn btn-outline-danger btn-block">
+                                        <i class="fab fa-youtube"></i> Watch Video
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-info">
+                <h4>No recipes found</h4>
+                <p>Try uploading a different image with more visible ingredients.</p>
+                <a href="{{ url_for('index') }}" class="btn btn-primary">Upload Another Image</a>
+            </div>
+        {% endif %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+</body>
+</html>

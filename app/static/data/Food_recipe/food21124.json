@@ -1,0 +1,37 @@
+{
+  "name": "Classic Beef and Potato Stew",
+  "description": "Hearty beef stew with tender potatoes",
+  "time": "2 hours",
+  "difficulty": "Easy",
+  "servings": 6,
+  "instructions": [
+    "Cut beef into 2-inch cubes and season with salt and pepper",
+    "Brown beef in a large pot with oil",
+    "Add onions and garlic, cook until softened",
+    "Add beef broth, tomato paste, and herbs",
+    "Simmer for 1 hour",
+    "Add cubed potatoes and carrots",
+    "Continue cooking for 30-40 minutes until vegetables are tender",
+    "Adjust seasoning and serve hot"
+  ],
+  "id": "21124",
+  "ingredients": [
+    "Potato",
+    "Beef"
+  ],
+  "tags": [
+    "dinner",
+    "main-course",
+    "roasted"
+  ],
+  "nutrition": {
+    "calories": 350,
+    "protein": "25g",
+    "carbs": "30g",
+    "fat": "12g"
+  },
+  "tips": [
+    "Let beef rest for 5 minutes after cooking for juicier results",
+    "Soak cut potatoes in cold water to remove excess starch"
+  ]
+}

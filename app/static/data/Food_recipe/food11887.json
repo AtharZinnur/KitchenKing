@@ -1,0 +1,33 @@
+{
+  "name": "Calamari in Tomato Sauce",
+  "description": "Tender squid rings in rich tomato sauce",
+  "time": "45 minutes",
+  "difficulty": "Medium",
+  "servings": 4,
+  "instructions": [
+    "Clean squid and cut into rings",
+    "Saut\u00e9 onions and garlic in olive oil",
+    "Add crushed tomatoes and herbs",
+    "Simmer sauce for 15 minutes",
+    "Add squid rings to sauce",
+    "Cook for 20-25 minutes until tender",
+    "Season with salt and pepper",
+    "Serve with pasta or crusty bread"
+  ],
+  "id": "11887",
+  "ingredients": [
+    "Squid",
+    "Tomato"
+  ],
+  "tags": [
+    "pescatarian",
+    "seafood"
+  ],
+  "nutrition": {
+    "calories": 350,
+    "protein": "10g",
+    "carbs": "15g",
+    "fat": "12g"
+  },
+  "tips": []
+}

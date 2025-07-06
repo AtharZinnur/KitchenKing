@@ -1,0 +1,34 @@
+{
+  "name": "Classic French Toast",
+  "description": "Golden brown French toast perfect for breakfast",
+  "time": "15 minutes",
+  "difficulty": "Easy",
+  "servings": 2,
+  "instructions": [
+    "Whisk eggs with milk, cinnamon, and vanilla",
+    "Heat butter in a griddle or large skillet",
+    "Dip bread slices in egg mixture",
+    "Cook until golden brown on both sides",
+    "Serve with maple syrup and fresh berries"
+  ],
+  "id": "14924",
+  "ingredients": [
+    "Bread",
+    "Egg",
+    "Pork",
+    "Beef"
+  ],
+  "tags": [
+    "breakfast"
+  ],
+  "nutrition": {
+    "calories": 450,
+    "protein": "25g",
+    "carbs": "30g",
+    "fat": "12g"
+  },
+  "tips": [
+    "Let beef rest for 5 minutes after cooking for juicier results",
+    "Use room temperature eggs for better results"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "Pork and Cabbage Stir Fry",
+  "description": "Asian-inspired pork and cabbage dish",
+  "time": "25 minutes",
+  "difficulty": "Medium",
+  "servings": 4,
+  "instructions": [
+    "Slice pork into thin strips",
+    "Marinate pork in soy sauce, ginger, and garlic",
+    "Heat wok or large skillet over high heat",
+    "Stir-fry pork until cooked through",
+    "Add sliced cabbage and carrots",
+    "Stir-fry until vegetables are tender-crisp",
+    "Season with soy sauce and sesame oil",
+    "Serve over steamed rice"
+  ],
+  "id": "01619",
+  "ingredients": [
+    "Cabbage",
+    "Pork",
+    "Chicken"
+  ],
+  "tags": [
+    "dinner",
+    "main-course"
+  ],
+  "nutrition": {
+    "calories": 400,
+    "protein": "25g",
+    "carbs": "15g",
+    "fat": "12g"
+  },
+  "tips": [
+    "Use a meat thermometer to ensure chicken reaches 165\u00b0F (74\u00b0C)"
+  ]
+}

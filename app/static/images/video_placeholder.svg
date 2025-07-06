@@ -1,0 +1,9 @@
+<svg width="480" height="360" xmlns="http://www.w3.org/2000/svg">
+  <rect width="480" height="360" fill="#f8f9fa"/>
+  <rect width="480" height="360" fill="#dc3545" opacity="0.1"/>
+  <g transform="translate(240, 180)">
+    <circle r="50" fill="#dc3545"/>
+    <polygon points="-20,-25 -20,25 30,0" fill="white"/>
+  </g>
+  <text x="240" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#6c757d">Recipe Video</text>
+</svg>

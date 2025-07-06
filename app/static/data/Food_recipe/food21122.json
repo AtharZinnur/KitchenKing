@@ -1,0 +1,35 @@
+{
+  "name": "Garlic Shrimp with Tomatoes",
+  "description": "Quick and flavorful shrimp saut\u00e9ed with fresh tomatoes",
+  "time": "20 minutes",
+  "difficulty": "Easy",
+  "servings": 4,
+  "instructions": [
+    "Clean and devein shrimp",
+    "Heat olive oil in a large skillet",
+    "Add minced garlic and red pepper flakes",
+    "Add shrimp and cook until pink, about 2-3 minutes per side",
+    "Add diced tomatoes and white wine",
+    "Simmer for 5 minutes",
+    "Season with salt, pepper, and fresh basil",
+    "Serve over pasta or with crusty bread"
+  ],
+  "id": "21122",
+  "ingredients": [
+    "Shrimp",
+    "Tomato"
+  ],
+  "tags": [
+    "pescatarian",
+    "seafood"
+  ],
+  "nutrition": {
+    "calories": 350,
+    "protein": "10g",
+    "carbs": "15g",
+    "fat": "12g"
+  },
+  "tips": [
+    "Don't overcook seafood - it should be just opaque"
+  ]
+}

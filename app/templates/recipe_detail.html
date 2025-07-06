@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ recipe.name }} - Pic2Kitchen</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" href="{{ url_for('static', filename='images/Icon_transparent.png') }}" type="image/png">
+    <style>
+        .recipe-header {
+            background-color: #f8f9fa;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        .ingredient-list {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .instructions {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+        .instruction-step {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 3px solid #dc3545;
+            background-color: #f8f9fa;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .rating-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+        }
+        .btn-favorite {
+            color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-favorite.active {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='images/Icon_transparent.png') }}" height="40" alt="Pic2Kitchen">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('recipe') }}">Recipes</a>
+                </li>
+                {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="recipe-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1>{{ recipe.name }}</h1>
+                    <p class="lead">{{ recipe.description }}</p>
+                    {% if recipe.time %}
+                        <p><i class="far fa-clock"></i> Cooking Time: {{ recipe.time }}</p>
+                    {% endif %}
+                    {% if recipe.servings %}
+                        <p><i class="fas fa-users"></i> Servings: {{ recipe.servings }}</p>
+                    {% endif %}
+                    {% if current_user.is_authenticated %}
+                        <button class="btn btn-outline-danger btn-favorite {% if is_favorite %}active{% endif %}" 
+                                onclick="toggleFavorite('{{ recipe_id }}')">
+                            <i class="fas fa-heart"></i> 
+                            <span id="favoriteText">{% if is_favorite %}Favorited{% else %}Add to Favorites{% endif %}</span>
+                        </button>
+                    {% endif %}
+                </div>
+                <div class="col-md-4">
+                    {% if avg_rating > 0 %}
+                        <div class="text-right">
+                            <h4>Average Rating</h4>
+                            <div class="rating-display">
+                                {% for i in range(1, 6) %}
+                                    <i class="fas fa-star {% if i <= avg_rating %}text-warning{% else %}text-muted{% endif %}"></i>
+                                {% endfor %}
+                                <p>({{ "%.1f"|format(avg_rating) }} / 5)</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="ingredient-list">
+                    <h3>Ingredients</h3>
+                    <ul class="list-unstyled">
+                        {% for ingredient in recipe.ingredients %}
+                            <li class="mb-2">
+                                <i class="fas fa-check-circle text-success"></i> {{ ingredient }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                {% if recipe.instructions %}
+                    <div class="instructions">
+                        <h3>Instructions</h3>
+                        {% if recipe.instructions is string %}
+                            <p>{{ recipe.instructions }}</p>
+                        {% else %}
+                            {% for step in recipe.instructions %}
+                                <div class="instruction-step">
+                                    <h5>Step {{ loop.index }}</h5>
+                                    <p>{{ step }}</p>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+                
+                {% if videos %}
+                    <h3 class="mt-4">Recipe Videos</h3>
+                    {% for video in videos[:1] %}
+                        <div class="video-container">
+                            <iframe src="{{ video.embed_url }}" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                
+                {% if current_user.is_authenticated %}
+                    <div class="rating-section">
+                        <h4>Rate this Recipe</h4>
+                        <div class="rating-input mb-3">
+                            {% for i in range(1, 6) %}
+                                <i class="fas fa-star rating-star {% if user_rating and i <= user_rating %}text-warning{% else %}text-muted{% endif %}" 
+                                   data-rating="{{ i }}" 
+                                   style="cursor: pointer; font-size: 1.5rem;"
+                                   onclick="setRating({{ i }})"></i>
+                            {% endfor %}
+                        </div>
+                        <textarea class="form-control mb-3" id="reviewText" rows="3" placeholder="Leave a review (optional)"></textarea>
+                        <button class="btn btn-primary" onclick="submitRating()">Submit Rating</button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="mt-4 mb-4">
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Upload Another Image</a>
+            <a href="{{ url_for('recipe') }}" class="btn btn-primary">Browse Recipes</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    <script>
+        let currentRating = {{ user_rating or 0 }};
+        
+        function toggleFavorite(recipeId) {
+            fetch(`/api/favorite/${recipeId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const btn = document.querySelector('.btn-favorite');
+                const text = document.getElementById('favoriteText');
+                if (data.is_favorite) {
+                    btn.classList.add('active');
+                    text.textContent = 'Favorited';
+                } else {
+                    btn.classList.remove('active');
+                    text.textContent = 'Add to Favorites';
+                }
+            });
+        }
+        
+        function setRating(rating) {
+            currentRating = rating;
+            document.querySelectorAll('.rating-star').forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('text-warning');
+                    star.classList.remove('text-muted');
+                } else {
+                    star.classList.remove('text-warning');
+                    star.classList.add('text-muted');
+                }
+            });
+        }
+        
+        function submitRating() {
+            const review = document.getElementById('reviewText').value;
+            fetch(`/api/rate/{{ recipe_id }}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    rating: currentRating,
+                    review: review
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Thank you for rating this recipe!');
+                    location.reload();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

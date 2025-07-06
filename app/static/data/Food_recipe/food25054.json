@@ -1,0 +1,38 @@
+{
+  "name": "Creamy Chicken and Mushroom",
+  "description": "A delicious creamy chicken dish with saut\u00e9ed mushrooms",
+  "time": "30 minutes",
+  "difficulty": "Medium",
+  "servings": 4,
+  "instructions": [
+    "Season chicken breasts with salt and pepper",
+    "Heat oil in a large skillet over medium-high heat",
+    "Cook chicken until golden brown, about 6-7 minutes per side",
+    "Remove chicken and set aside",
+    "In the same pan, saut\u00e9 sliced mushrooms until tender",
+    "Add garlic and cook for 1 minute",
+    "Pour in cream and chicken broth",
+    "Return chicken to pan and simmer for 10 minutes",
+    "Garnish with fresh parsley and serve"
+  ],
+  "id": "25054",
+  "ingredients": [
+    "Tomato",
+    "Mushroom",
+    "Chicken"
+  ],
+  "tags": [
+    "dinner",
+    "main-course"
+  ],
+  "nutrition": {
+    "calories": 400,
+    "protein": "25g",
+    "carbs": "15g",
+    "fat": "12g"
+  },
+  "tips": [
+    "Use a meat thermometer to ensure chicken reaches 165\u00b0F (74\u00b0C)",
+    "Don't wash mushrooms - wipe them clean with a damp paper towel"
+  ]
+}

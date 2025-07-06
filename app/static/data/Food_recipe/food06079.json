@@ -1,0 +1,36 @@
+{
+  "name": "Seafood with Potato",
+  "description": "A delicious combination of fresh ingredients",
+  "time": "30 minutes",
+  "difficulty": "Medium",
+  "servings": 4,
+  "instructions": [
+    "Prepare all ingredients by washing and cutting as needed",
+    "Heat oil in a large pan over medium heat",
+    "Cook protein ingredients first until done",
+    "Add vegetables and saut\u00e9 until tender",
+    "Season with salt, pepper, and herbs",
+    "Combine all ingredients and heat through",
+    "Adjust seasoning to taste",
+    "Serve hot with appropriate sides"
+  ],
+  "id": "06079",
+  "ingredients": [
+    "Seafood",
+    "Potato"
+  ],
+  "tags": [
+    "pescatarian",
+    "roasted"
+  ],
+  "nutrition": {
+    "calories": 350,
+    "protein": "25g",
+    "carbs": "30g",
+    "fat": "12g"
+  },
+  "tips": [
+    "Don't overcook seafood - it should be just opaque",
+    "Soak cut potatoes in cold water to remove excess starch"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "Grilled Salmon Salad",
+  "description": "Healthy grilled salmon over mixed greens",
+  "time": "25 minutes",
+  "difficulty": "Medium",
+  "servings": 2,
+  "instructions": [
+    "Season salmon fillets with salt, pepper, and lemon",
+    "Grill salmon for 4-5 minutes per side",
+    "Mix salad greens with cucumber, tomatoes, and red onion",
+    "Make vinaigrette with olive oil, lemon juice, and Dijon mustard",
+    "Place grilled salmon over salad",
+    "Drizzle with dressing and serve"
+  ],
+  "id": "18748",
+  "ingredients": [
+    "Salad",
+    "Tomato",
+    "Salmon"
+  ],
+  "tags": [
+    "pescatarian",
+    "healthy",
+    "light"
+  ],
+  "nutrition": {
+    "calories": 400,
+    "protein": "10g",
+    "carbs": "15g",
+    "fat": "12g"
+  },
+  "tips": []
+}

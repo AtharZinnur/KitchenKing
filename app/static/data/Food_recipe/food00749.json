@@ -1,0 +1,31 @@
+{
+  "name": "Fresh Tomato Delight",
+  "description": "A delicious combination of fresh ingredients",
+  "time": "30 minutes",
+  "difficulty": "Medium",
+  "servings": 4,
+  "instructions": [
+    "Prepare all ingredients by washing and cutting as needed",
+    "Heat oil in a large pan over medium heat",
+    "Cook protein ingredients first until done",
+    "Add vegetables and saut\u00e9 until tender",
+    "Season with salt, pepper, and herbs",
+    "Combine all ingredients and heat through",
+    "Adjust seasoning to taste",
+    "Serve hot with appropriate sides"
+  ],
+  "id": "00749",
+  "ingredients": [
+    "Tomato"
+  ],
+  "tags": [
+    "vegetarian"
+  ],
+  "nutrition": {
+    "calories": 300,
+    "protein": "10g",
+    "carbs": "15g",
+    "fat": "12g"
+  },
+  "tips": []
+}

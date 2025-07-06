@@ -1,0 +1,38 @@
+{
+  "name": "Roasted Chicken with Root Vegetables",
+  "description": "One-pan roasted chicken with potatoes and carrots",
+  "time": "1 hour 15 minutes",
+  "difficulty": "Easy",
+  "servings": 4,
+  "instructions": [
+    "Preheat oven to 425\u00b0F (220\u00b0C)",
+    "Season chicken pieces with herbs and spices",
+    "Cut potatoes and carrots into chunks",
+    "Toss vegetables with olive oil, salt, and pepper",
+    "Arrange chicken and vegetables on a baking sheet",
+    "Roast for 45-60 minutes until chicken is golden",
+    "Let rest for 5 minutes before serving"
+  ],
+  "id": "07755",
+  "ingredients": [
+    "Carrot",
+    "Tomato",
+    "Potato",
+    "Chicken"
+  ],
+  "tags": [
+    "dinner",
+    "main-course",
+    "roasted"
+  ],
+  "nutrition": {
+    "calories": 450,
+    "protein": "25g",
+    "carbs": "30g",
+    "fat": "12g"
+  },
+  "tips": [
+    "Use a meat thermometer to ensure chicken reaches 165\u00b0F (74\u00b0C)",
+    "Soak cut potatoes in cold water to remove excess starch"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "name": "Beef with Tomato",
+  "description": "A delicious combination of fresh ingredients",
+  "time": "30 minutes",
+  "difficulty": "Medium",
+  "servings": 4,
+  "instructions": [
+    "Prepare all ingredients by washing and cutting as needed",
+    "Heat oil in a large pan over medium heat",
+    "Cook protein ingredients first until done",
+    "Add vegetables and saut\u00e9 until tender",
+    "Season with salt, pepper, and herbs",
+    "Combine all ingredients and heat through",
+    "Adjust seasoning to taste",
+    "Serve hot with appropriate sides"
+  ],
+  "id": "06376",
+  "ingredients": [
+    "Tomato",
+    "Cucumber",
+    "Bread",
+    "Beef"
+  ],
+  "tags": [
+    "dinner",
+    "main-course"
+  ],
+  "nutrition": {
+    "calories": 450,
+    "protein": "25g",
+    "carbs": "30g",
+    "fat": "12g"
+  },
+  "tips": [
+    "Let beef rest for 5 minutes after cooking for juicier results"
+  ]
+}

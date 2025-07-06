@@ -1,0 +1,36 @@
+{
+  "name": "Chicken with Carrot",
+  "description": "A delicious combination of fresh ingredients",
+  "time": "30 minutes",
+  "difficulty": "Medium",
+  "servings": 4,
+  "instructions": [
+    "Prepare all ingredients by washing and cutting as needed",
+    "Heat oil in a large pan over medium heat",
+    "Cook protein ingredients first until done",
+    "Add vegetables and saut\u00e9 until tender",
+    "Season with salt, pepper, and herbs",
+    "Combine all ingredients and heat through",
+    "Adjust seasoning to taste",
+    "Serve hot with appropriate sides"
+  ],
+  "id": "02670",
+  "ingredients": [
+    "Carrot",
+    "Chicken"
+  ],
+  "tags": [
+    "dinner",
+    "main-course",
+    "roasted"
+  ],
+  "nutrition": {
+    "calories": 350,
+    "protein": "25g",
+    "carbs": "15g",
+    "fat": "12g"
+  },
+  "tips": [
+    "Use a meat thermometer to ensure chicken reaches 165\u00b0F (74\u00b0C)"
+  ]
+}
